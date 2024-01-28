@@ -15,6 +15,8 @@ Subitituir <parametro> pela informação desejada. Para selecionar mais de um mu
 
 Ex: http://127.0.0.1:5000/veeries/quantidadeproduzida/municipios/1100015,1100023/anos/2019,2020
 
+Para limitar a execução a 100 registros, defini isto na função "connect_postgres"
+
 ##########PERGUNTAS ADICIONAIS####################
 1.Não hospedei serviço web em nuvem
 2. Conheço terraform, mas nunca utilizei
