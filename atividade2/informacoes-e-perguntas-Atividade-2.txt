@@ -1,0 +1,21 @@
+Informações adicionais e Perguntas - Atividade 1
+
+########INFORMAÇÕES ADICIONAIS###########
+Obs: Não tenho prática com desenvolvimento de API
+
+A api foi desenvolvida através do framework Flask para python.
+Ele roda  no localhost através do endereço http://127.0.0.1:5000/
+
+Foram criados 3 endpoints:
+- /veeries/areacolhida/municipio/<int:municipio_id>/ano/<int:ano>
+- /veeries/produtividade/estados/<estados>/ano/<int:ano>
+- /veeries/quantidadeproduzida/municipios/<municipios>/anos/<anos>
+
+Subitituir <parametro> pela informação desejada. Para selecionar mais de um municipio ou ano, separar através da ","
+
+Ex: http://127.0.0.1:5000/veeries/quantidadeproduzida/municipios/1100015,1100023/anos/2019,2020
+
+##########PERGUNTAS ADICIONAIS####################
+1.Não hospedei serviço web em nuvem
+2. Conheço terraform, mas nunca utilizei
+3.Já utilizei o OAuth (Open Authorization) mas apenas para conectar a API. Não utilizei para implementação de API.
