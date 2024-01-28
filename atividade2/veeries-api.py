@@ -25,10 +25,11 @@ def connect_postgres(query):
         port=port
     )
     cur = conn.cursor()
-    cur.execute(query)
+    cur.execute(query + f" LIMIT 100 ")
     data = cur.fetchall()
     cur.close()
     conn.close()
+    #limita a consulta a 100 requisições
     if len(data) > 100:
         raise ValueError("Excedido o limite de 100 dados simultaneamente")
     return data
