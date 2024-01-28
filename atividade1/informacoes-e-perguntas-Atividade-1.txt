@@ -1,0 +1,21 @@
+Informações adicionais e Perguntas - Atividade 1
+
+########INFORMAÇÕES ADICIONAIS###########
+Definição do banco de dados:
+- Foi criado um database "veeries", schema "public" dentro do postgres.
+- As tabelas "area_colhida" e "quantidade_produzida" foram criadas com base no dataframe já tratado da fonte da API. A função utilizada para criação da tabela no postgres é denominada "create_table_postgres.py".
+- Após isso, foi necessário adicionar as colunas de "created_at" e "updated_at" no postgres para cada tabela, assim como, a inclusão de um trigger "atualizar_updated_at()" que atualiza o "updated_at" a cada nova atualização de dados.
+- Por fim, verificou-se que para cada tabela a chave primária poderia ser identificada num conjunto entre o "municipio_id" e o "ano_id", criei então uma restrição do tipo unique "municipio_ano_unique_id" entre estas colunas e defini que elas não podem ser nulas, garantindo assim a integridade dos dados. Poderia criar esta coluna no postgres a fim de ser o indentificador unico (chave primária) "municipio_ano_unique_id"
+
+Não foi necessário utilizar o csv que informa o estado brasileiro a que cada município pertence. Para isto utlizamos o comando "split" dividindo o nome do muncipio e o estado em duas colunas na função "organize_df"
+
+A execução da função esta definida no final de cada código
+
+############PERGUNTAS#########################
+1. Tenho experiência no orquestrador de processos da AWS, conhecido como step funcitons. O processo criado via python não está configurado para executar automaticamente. Sua execução precisa ser manual.
+
+2. Conheço a ferramenta airflow e já utilizei algumas vezes. A integração do processo via airflow seria justamente para conseguir realizar a execução automatica do processo. Para este caso criaria uma dag contendo 3 tarefas, referentes a conexão da api, transformação dos dados e inserção no banco de dados. Colocaria a execução das tarefas em série e definiria o "schedule_interval" da dag como "@yearly" já que os dados da API são disponibilizados anualmente. Para imputar o ano que será realizado a consulta da api, utilizaria o ano corrente da execução. Lembrando que seria necessário configurar a conexão do banco de dados no airflow. Para um processo mais detalhado poderia acrescentar mensagens de notificação de erro, caso alguma das tasks falhassem, ou ainda, uma etapa de validação dos dados antes de imputá-los no banco de dados.
+
+3. Para lidar com dados inconsistentes poderia acrestar uma etapa de validação de dados antes de imputá-los no banco. A biblioteca pydantic permite que eu defina modelo de dados, especificando o tipo de dado, validações necessárias, campos com um range limitado, entre outras.
+
+4.Caso fosse criado uma tabela ao invés de uma view a abordagem seria alterada. No caso, precisaria criar um meio de atualizar a tabela caso os dados da tabela fonte fossem alterados. Pois a view é uma consulta dinamica, caso os dados da tabela fonte se alterem, na view estes dados seriam alterados também. O que não ocorre no caso da tabela, logo precisaria criar uma procedure ou um trigger para mantê-la atualizada.
